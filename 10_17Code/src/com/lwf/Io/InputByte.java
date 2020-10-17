@@ -30,7 +30,19 @@ public class InputByte {
         }
         in.close();
     }
+
+    public static void write(String name) throws IOException {
+        Writer ou=new FileWriter(new File(name));
+        String string = new String("你好");
+        String s=new String(string.getBytes("UTF-8"));
+        System.out.println(s);
+        s=new String(string.getBytes("gbk"),"gbk");
+        System.out.println(s);
+        ou.write(string+s);
+        ou.close();
+    }
     public static void main(String[] args) throws IOException {
-        charRead("C:\\Users\\lwf\\IdeaProjects\\10_17Code\\src\\com\\lwf\\Io\\InputByte.java");
+        //charRead("C:\\Users\\lwf\\IdeaProjects\\10_17Code\\src\\com\\lwf\\Io\\InputByte.java");
+        write("1.txt");
     }
 }

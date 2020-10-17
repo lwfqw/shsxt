@@ -10,7 +10,12 @@ import java.util.Arrays;
  * @description: TODO
  * @date 2020/10/179:04
  */
-public class InputByte {
+public class Read {
+    /**
+     * 缓冲字节流读取
+     * @param fileName
+     * @throws IOException
+     */
     public static void read(String fileName) throws IOException {
         BufferedInputStream is=new BufferedInputStream(new FileInputStream(fileName));
         int len=-1;
@@ -20,6 +25,12 @@ public class InputByte {
             System.out.println(new String(buf,0,len, "UTF-8"));
         }
     }
+
+    /**
+     * 字符流读取
+     * @param file
+     * @throws IOException
+     */
     public static void charRead(String file) throws IOException {
         FileReader in=new FileReader(new File(file));
         int len=-1;
@@ -31,18 +42,37 @@ public class InputByte {
         in.close();
     }
 
-    public static void write(String name) throws IOException {
-        Writer ou=new FileWriter(new File(name));
-        String string = new String("你好");
-        String s=new String(string.getBytes("UTF-8"));
-        System.out.println(s);
-        s=new String(string.getBytes("gbk"),"gbk");
-        System.out.println(s);
-        ou.write(string+s);
-        ou.close();
+    /**
+     * 字符缓冲读取
+     * @param name
+     * @throws IOException
+     */
+    public static void bufferRead(String name)throws IOException{
+        BufferedReader in=new BufferedReader(new FileReader(name));
+        String string;
+        while (null!=(string = in.readLine())){
+            System.out.println(string);
+        }
     }
+
+    /**
+     * 缓冲字符包装流
+     * @param name 文件名
+     * @param set  编码
+     * @throws IOException
+     */
+    public static void bufInputReader(String name ,String set) throws IOException {
+        BufferedReader in=new BufferedReader(new InputStreamReader(new BufferedInputStream(new FileInputStream(name)),set));
+        String string;
+        while(null!=(string = in.readLine())){
+            System.out.println(string);
+        }
+        in.close();
+    }
+
     public static void main(String[] args) throws IOException {
         //charRead("C:\\Users\\lwf\\IdeaProjects\\10_17Code\\src\\com\\lwf\\Io\\InputByte.java");
-        write("1.txt");
+        //write("1.txt");
+        bufInputReader("1.txt", "UTF-8");
     }
 }

@@ -70,9 +70,38 @@ public class Read {
         in.close();
     }
 
-    public static void main(String[] args) throws IOException {
+    /**
+     * 数据流
+     * @param name
+     * @throws IOException
+     */
+    public static void dataInput(String name)throws IOException{
+        DataInputStream inputStream = new DataInputStream(new FileInputStream(name));
+        System.out.println(inputStream.readUTF());
+        System.out.println(inputStream.readLong());
+        System.out.println(inputStream.readBoolean());
+        inputStream.close();
+    }
+
+    /**
+     * 对象流
+     * @param name
+     * @throws IOException
+     */
+    public static Object objectRead(String name) throws IOException, ClassNotFoundException {
+        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(name));
+        Object object = inputStream.readObject();
+        inputStream.close();
+        return object;
+    }
+
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         //charRead("C:\\Users\\lwf\\IdeaProjects\\10_17Code\\src\\com\\lwf\\Io\\InputByte.java");
         //write("1.txt");
-        bufInputReader("1.txt", "UTF-8");
+        //bufInputReader("1.txt", "UTF-8");
+        //dataInput("1.txt");
+        Student student=(Student)objectRead("1.txt");
+        System.out.println(student.toString());
+
     }
 }

@@ -1,5 +1,6 @@
 package com.lwf.Io;
 
+import javax.print.StreamPrintService;
 import java.io.*;
 
 /**
@@ -57,8 +58,34 @@ public class Write {
         ou.write(string+s);
         ou.close();
     }
+
+    /**
+     * 数据写入流
+     * @param name
+     * @throws IOException
+     */
+    public static void writeData(String name)throws IOException{
+        DataOutputStream outputStream = new DataOutputStream(new FileOutputStream(name));
+        outputStream.writeUTF("你好");
+        outputStream.writeLong(100203854L);
+        outputStream.writeBoolean(true);
+        outputStream.close();
+    }
+
+    /**
+     * 对象流
+     * @param name
+     * @throws IOException
+     */
+    public static void objectWrite(String name,Object obj)throws IOException{
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(name));
+        out.writeObject(obj);
+        out.close();
+    }
     public static void main(String[] args) throws IOException {
         //copyByte("resource/small1311548U2uv1600924314.jpg", "2.jpg");
         //write("1.txt", "lwf");
+       // writeData("1.txt");
+        objectWrite("1.txt", new Student("lwf",18));
     }
 }

@@ -4,7 +4,7 @@ package com.lwf.ThreadLearn;
  * @author lwf
  * @title: Rubbit
  * @projectName 10_19Code
- * @description: TODO
+ * @description: 龟兔赛跑
  * @date 2020/10/1911:10
  */
 public class Rubbit implements Runnable{

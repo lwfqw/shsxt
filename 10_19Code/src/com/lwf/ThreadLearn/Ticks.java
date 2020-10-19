@@ -4,11 +4,11 @@ package com.lwf.ThreadLearn;
  * @author lwf
  * @title: Ticks
  * @projectName 10_19Code
- * @description: TODO
+ * @description: 同步锁类，volatile锁基本数据类型资源
  * @date 2020/10/1910:23
  */
 public class Ticks extends Thread{
-    private static volatile int ticks;
+    private static volatile int ticks;//锁资源
     public Ticks(String name,int ticks) {
         super(name);
         this.ticks=ticks;
@@ -48,6 +48,7 @@ public class Ticks extends Thread{
 //        thread1.start();
     }
 }
+//锁类
 class Get implements Runnable{
     private  static int ticks;
 

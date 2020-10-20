@@ -7,7 +7,7 @@ import java.net.*;
  * @author lwf
  * @title: UDPFileOut
  * @projectName 10_20Code
- * @description: TODO
+ * @description: UDP多线程收发文件
  * @date 2020/10/2014:02
  */
 public class UDPFileOut {

@@ -29,13 +29,11 @@ public class TCPServer {
         }
         int in=strings[0].indexOf(":");int in1=strings[1].indexOf(":");
         info.put(strings[0].substring(in+1),strings[1].substring(in1+1));
-        System.out.println(info);
-        if(info.containsValue("lwf")){
-            if(info.get("lwf").equals("root"))
-                System.out.println("用户密码正确");
-        }
-
-        outputStream.writeUTF("服务端响应:"+msg.toString());
+//        if(info.containsValue("lwf")){
+//            if(info.get("lwf").equals("root"))
+//                System.out.println("用户密码正确");
+//        }
+        outputStream.writeUTF("服务端响应:"+msg.toString()+"，信息验证："+info.get("lwf").equals("root"));
         outputStream.flush();
         outputStream.close();
         client.close();

@@ -2,7 +2,7 @@
 
 ## 1. 线程状态
 
-![image-20201019213747706](C:\Users\lwf\AppData\Roaming\Typora\typora-user-images\image-20201019213747706.png)
+![image-20201019213747706](https://www.runoob.com/wp-content/uploads/2014/01/java-thread.jpg)
 
 线程状态。线程可以处于以下状态之一：
 

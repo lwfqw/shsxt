@@ -20,7 +20,7 @@ public class ServerThread extends Thread {
 
     }
     private ServerSocket server;
-
+    private int time=0;
     public ServerThread(ServerSocket server) {
         this.server = server;
     }
@@ -31,6 +31,8 @@ public class ServerThread extends Thread {
             synchronized (this) {
                 try {
                     Socket client = server.accept();
+                    time++;
+                    System.out.println("当前连接数:"+time);
                     DataInputStream input = new DataInputStream(new BufferedInputStream(client.getInputStream()));
                     DataOutputStream outputStream = new DataOutputStream(new BufferedOutputStream(client.getOutputStream()));
                     String msg = input.readUTF();

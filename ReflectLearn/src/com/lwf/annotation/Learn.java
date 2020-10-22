@@ -14,19 +14,24 @@ import java.lang.reflect.InvocationTargetException;
 public class Learn {
     public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchFieldException {
         Learn learn=Learn.class.getConstructor(int.class,String.class).newInstance(16,"lwf");
-        for (Annotation annotation : learn.getClass().getAnnotations()) {
-            System.out.println(annotation.annotationType());
-        }
+        //获取指定属性上的注解的特定值
+        System.out.println(Learn.class.getDeclaredField("name").getAnnotation(MyAnnotation.class).name());
+        //使用注解上的值给属性
         for (Field declaredField : Learn.class.getDeclaredFields()) {
-            System.out.println(declaredField.getAnnotation(MyAnnotation.class).value());
-            System.out.println(declaredField.getAnnotation(MyAnnotation.class).name());
+            if (declaredField.isAnnotationPresent(MyAnnotation.class)){
+                declaredField.setAccessible(true);
+                if(declaredField.getType()==String.class)
+                    declaredField.set(learn, declaredField.getAnnotation(MyAnnotation.class).name());
+                else
+                    declaredField.set(learn, declaredField.getAnnotation(MyAnnotation.class).value());
+            }
         }
 
-        System.out.println(Learn.class.getDeclaredField("id").getAnnotation(MyAnnotation.class).name());
+        System.out.println(learn);
     }
-    @MyAnnotation(name = "id上注解",value = 1)
+    @MyAnnotation(name = "大熊猫",value = 1)
     private int id;
-    @MyAnnotation(name = "Name上注解",value = 2)
+    @MyAnnotation(name = "大熊猫",value = 2)
     private String name;
 
     public Learn(int id, String name) {

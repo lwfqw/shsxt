@@ -1,8 +1,6 @@
 package com.lwf.annotation;
-
-import jdk.dynalink.beans.StaticClass;
-
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * @author lwf
@@ -12,22 +10,19 @@ import java.lang.reflect.Field;
  * @date 2020/10/2217:51
  */
 public class LearnPlus<T> {
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
-        Student student=Student.class.newInstance();
-        new LearnPlus<Student>().getObject("com.lwf.annotation.Student",student);
-        System.out.println(student);
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+        System.out.println(new LearnPlus<Student>().getObject(Student.class));
     }
     /**
      * MyAnnotationPlus注解解析器
-     * @param str
-     * @param obj
+     * @param cla class对象
      * @return
      * @throws ClassNotFoundException
      * @throws IllegalAccessException
      */
-    public  boolean getObject(String str,T obj) throws ClassNotFoundException, IllegalAccessException {
-        Class c= Class.forName(str);
-        for (Field field : c.getDeclaredFields()) {
+    public  Object getObject(Class<T> cla ) throws  IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException {
+        Object obj =cla.getConstructor().newInstance();
+        for (Field field : cla.getDeclaredFields()) {
             if(field.isAnnotationPresent(MyAnnotationPlus.class)){
                 field.setAccessible(true);
                 if(field.get(obj)==null){
@@ -35,6 +30,6 @@ public class LearnPlus<T> {
                 }
             }
         }
-        return true;
+        return obj;
     }
 }

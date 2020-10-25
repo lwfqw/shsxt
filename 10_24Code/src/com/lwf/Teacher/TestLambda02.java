@@ -13,7 +13,7 @@ public class TestLambda02 {
 	}
 	public static void main(String[] args) {
 		//第一个字符大写
-		System.out.println(format("lwf", str -> str.substring(0, 1).toUpperCase() + str.substring(1)));
+		System.out.println(format("lwf", str -> str.toUpperCase() ));
 		//再将一个字符串的第2个和第4个索引位置进行截取子串
 		System.out.println(format("qwertuioiuy", str -> str.substring(2, 5)));
 	}

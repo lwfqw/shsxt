@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Pandas>
+  <panda>
+    <name>金虎</name>
+    <city>重庆</city>
+    <age>2</age>
+  </panda>
+  <panda>
+    <name>绩笑</name>
+    <city>成都</city>
+    <age>2</age>
+  </panda>
+  <panda>
+    <name>雪宝</name>
+    <city>上海</city>
+    <age>2</age>
+  </panda>
+</Pandas>

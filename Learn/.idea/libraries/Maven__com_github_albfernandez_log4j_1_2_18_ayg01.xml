@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.github.albfernandez:log4j:1.2.18.ayg01">
+    <CLASSES>
+      <root url="jar://D:/Maven/LocalWarehouse/com/github/albfernandez/log4j/1.2.18.ayg01/log4j-1.2.18.ayg01.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/Maven/LocalWarehouse/com/github/albfernandez/log4j/1.2.18.ayg01/log4j-1.2.18.ayg01-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/Maven/LocalWarehouse/com/github/albfernandez/log4j/1.2.18.ayg01/log4j-1.2.18.ayg01-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

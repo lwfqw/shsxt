@@ -158,6 +158,39 @@ public class Demo1 {
 遍历打印流
 
 ## count（）流长度
+##  排序 sorted(Comparable)-自然排序
+      sorted(Comparator)-定制排序：传入一个继承了Comparable接口的比较器
+## 终止操作 
+
+## 收集（了解）
+收集-将流转换为其他形式，接收一个Collertor接口的实现，用于给Stream中元素做
+汇总的方法
+```
+Optional<Double> op4 = emps.stream() .map(Employee::getSalary) .min(Double::compare); System.out.println(op4.get()); }
+   // 需求：获取当前公司所有员工的姓名添加到集合中 
+   // List-把流中所有元素收集到List中 
+   List<String> list = emps.stream() .map(Employee::getName) .collect(Collectors.toList()); 
+   list.forEach(System.out::println); 
+   // Set-把流中所有元素收集到Set中，删除重复项 
+   Set<String> set = emps.stream() .map(Employee::getName) .collect(Collectors.toSet()); 
+   set.forEach(System.out::println); 
+   // Map-把流中所有元素收集到Map中，当出现相同的key时会抛异常 
+   Map<String, Integer> map = emps.stream() .collect(Collectors.toMap(Employee::getName, Employee::getAge)); 
+   System.out.println(map); 
+   // 员工总数 
+   Long count = emps.stream().collect(Collectors.counting()); System.out.println(count);
+   // 工资平均数 
+   Double avg = emps.stream() .collect(Collectors.averagingDouble(Employee::getSalary)); 
+   System.out.println(avg); 
+   // 工资总和 
+   Double sum = emps.stream() .collect(Collectors.summingDouble(Employee::getSalary)); 
+   System.out.println(sum); 
+   // 工资最大值的员工 
+   Optional<Employee> op = emps.stream() .collect(Collectors.maxBy((e1, e2) ->
+Double.compare(e1.getSalary(), e2.getSalary()))); System.out.println(op.get());
+```
+注意：
+1、Stream自己不会存储元素· 2、Stream不会改变源对象。相反，会返回一个持有结果的新Stream。 3、Stream操作是延迟执行的，这意味着他们会等到需要结果的时候才执行。
 
 ```
 package com.lwf.homeWork;
@@ -264,5 +297,25 @@ class Pen extends Goods{
 
 
 
-# 流是懒加载，所以对流无论进行多少次操作都会取结果时一起打印·（foreach和count）
+# 流是懒加载，所以对流无论进行多少次操作都会取结果时一起打印·（foreach和count,或转化为集合操作时）
+
+
+```
+public class StreamTest {
+    public static void main(String[] args) {
+        List<String> list=new ArrayList<>();
+        list.add("lwf");
+        list.add("lwf");
+        list.add("ppl");
+        list.add("xly");
+        list.add("hjx");
+        System.out.println(list.stream().collect(Collectors.toSet()));
+        Set<Integer> collect = list.stream().map(s -> s.hashCode()).collect(Collectors.toSet());
+        System.out.println(collect);
+        System.out.println(collect.stream().collect(Collectors.averagingDouble(s -> s)));
+        System.out.println(list.stream().distinct().collect(Collectors.toMap(s -> s, s1 -> s1.length())));
+    }
+}
+```
+
 

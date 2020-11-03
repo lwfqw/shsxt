@@ -17,8 +17,9 @@ public class Test {
     static {
         System.out.println("静态块");
     }
+    private int anInt = 10;
     public static void main(String[] args) {
         Test t = new Test();
+        System.out.println(new Test().anInt);
     }
 }
-

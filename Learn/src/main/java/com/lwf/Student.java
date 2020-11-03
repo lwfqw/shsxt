@@ -13,7 +13,7 @@ import java.io.Serializable;
 @lombok.Data
 @lombok.NoArgsConstructor
 @lombok.AllArgsConstructor
-public class Student implements Serializable,Cloneable {
+public class Student implements Serializable, Cloneable {
     private String name;
     private Integer age;
     private String className;

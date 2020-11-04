@@ -53,6 +53,14 @@ public class OracleJDBCUtils<T> implements ReflectUtils<T>{
         return list;
     }
 
+    /**
+     *
+     * @param sql sql语句
+     * @param args 可变参数填入预处理模块PreparedStatement
+     * @return
+     * @throws SQLException
+     * @throws IllegalAccessException
+     */
     @Override
     public boolean delete(String sql,Object... args) throws SQLException, IllegalAccessException {
         statement=connection.prepareStatement(sql);
@@ -69,17 +77,39 @@ public class OracleJDBCUtils<T> implements ReflectUtils<T>{
         }
     }
 
+    /**
+     * 调用delete
+     * @param sql sql语句
+     * @param args 可变参数填入预处理模块PreparedStatement
+     * @return
+     * @throws IllegalAccessException
+     * @throws NoSuchFieldException
+     * @throws SQLException
+     */
     @Override
     public boolean update(String sql,Object... args) throws IllegalAccessException, NoSuchFieldException, SQLException {
       return delete(sql, args);
     }
 
+    /**
+     *
+     * @param sql sql语句
+     * @param args 可变参数填入预处理模块PreparedStatement
+     * @return
+     * @throws IllegalAccessException
+     * @throws SQLException
+     */
     @Override
     public boolean insert(String sql,Object... args) throws IllegalAccessException, SQLException {
     return delete(sql, args);
     }
 
-    public void close() throws SQLException {
+    /**
+     * 关闭连接
+     * @throws SQLException
+     */
+    @Override
+    public  void close() throws SQLException {
         if(rs!=null)
             rs.close();
         if(statement!=null)

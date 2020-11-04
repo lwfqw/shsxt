@@ -39,4 +39,6 @@ public interface ReflectUtils <T>{
      * @return
      */
     boolean insert(String sql,Object... args) throws IllegalAccessException, SQLException;
+
+    void close() throws SQLException;
 }

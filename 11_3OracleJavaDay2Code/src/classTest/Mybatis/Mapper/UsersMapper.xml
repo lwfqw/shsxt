@@ -1,0 +1,33 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace表示对应接口类路径-->
+<mapper namespace="classTest.Mybatis.Mapper.UsersMapper">
+    <select id="queryPassword" parameterType="Integer" resultType="String">
+        select password from users where id=#{id}
+    </select>
+    <select id="queryById" parameterType="Integer" resultType="Users">
+        select * from users where id =#{id}
+    </select>
+    <select id="queryAll" resultType="Users">
+        select * from users order by id desc
+    </select>
+    <update id="updateByid" parameterType="Users">
+        update users
+        <set>
+            <if test="#{name}!=null">name=#{name},</if>
+            <if test="#{password}!=null">password=#{password},</if>
+            <if test="#{tel}!=null">tel=#{tel}</if>
+        </set>
+        where id =#{id}
+    </update>
+    <insert id="insert" parameterType="Users">
+        insert into users values(#{id},#{name},#{password},#{tel})
+    </insert>
+    <delete id="delete" parameterType="Integer">
+        delete from users
+        <where>
+            <if test="#{id}!=null">id=#{id}</if>
+        </where>
+    </delete>
+</mapper>

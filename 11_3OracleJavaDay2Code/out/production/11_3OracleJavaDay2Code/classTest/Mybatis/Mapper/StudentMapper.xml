@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace表示对应接口类路径-->
+<mapper namespace="classTest.Mybatis.Mapper.StudentMapper">
+<!--    id表示接口对应方法，parameterType为传入参数类型，
+        resultType为结果类型
+        resultMap定义需要的结果集
+        sql语句后不能加';'
+-->
+    <select id="queryAll" parameterType="classTest.Mybatis.Emtity.Student" resultType="classTest.Mybatis.Emtity.Student">
+        select * from student
+    </select>
+    <select id="queryBySno" parameterType="String" resultType="Student">
+        select * from student where sno=#{sno}
+    </select>
+    <update id="update" parameterType="Student">
+        update student
+        <set>
+            <if test="#{sname}!= null">sname=#{sname},</if>
+            <if test="#{sage}!= null">sage=#{sage},</if>
+            <if test="#{sdept} != null">sdept=#{sdept},</if>
+        </set>
+        where sno=#{sno}
+    </update>
+    <insert id="insert" parameterType="Student">
+        insert into student values (#{sno},#{sname},#{ssex},#{sage},#{sdept})
+    </insert>
+    <delete id="delete" parameterType="Student" >
+        delete  from student where 1=1
+        <if test="#{sno}!=null">and sno=#{sno}</if>
+        <if test="#{sname}!=null">and sname=#{sname}</if>
+        <if test="#{sage}!=null">and sage=#{sage}</if>
+        <if test="#{sdept}!=null">and sdept=#{sdept}</if>
+    </delete>
+</mapper>

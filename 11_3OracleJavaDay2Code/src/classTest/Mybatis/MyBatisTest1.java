@@ -1,11 +1,6 @@
 package classTest.Mybatis;
-
-import classTest.Mybatis.Emtity.Production;
-import classTest.Mybatis.Emtity.Student;
-import classTest.Mybatis.Emtity.Users;
-import classTest.Mybatis.Mapper.ProductionMapper;
-import classTest.Mybatis.Mapper.StudentMapper;
-import classTest.Mybatis.Mapper.UsersMapper;
+import classTest.Mybatis.Mapper.DeptMapper;
+import classTest.Mybatis.Mapper.EmpMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -24,7 +19,7 @@ public class MyBatisTest1 {
         SqlSessionFactory sqlSessionFactory= new  SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis.xml" ));
         SqlSession sqlSession = sqlSessionFactory.openSession();
         //studentMapper测试
-//        StudentMapper mapper = (StudentMapper) sqlSession.getMapper(StudentMapper.class);
+      // StudentMapper mapper = (StudentMapper) sqlSession.getMapper(StudentMapper.class);
 //        mapper.queryAll().forEach(System.out::println);
 //        System.out.println("---------------------查一个");
 //        System.out.println(mapper.queryBySno("9521105"));
@@ -36,7 +31,7 @@ public class MyBatisTest1 {
 //        System.out.println(mapper.queryBySno("9521106"));
 //        mapper.delete(new Student("9521106", "日天", 21,'男', "信息学院"));
 //userMapper测试
-//        UsersMapper usersMapper=sqlSession.getMapper(UsersMapper.class);
+     //  UsersMapper usersMapper=sqlSession.getMapper(UsersMapper.class);
 //        System.out.println(usersMapper.queryPassword(1));
 //        System.out.println(usersMapper.queryById(1));
 //        usersMapper.insert(new Users(4, "周永日", "123456", "12345678901"));
@@ -44,18 +39,26 @@ public class MyBatisTest1 {
 //        usersMapper.updateByid(new Users(1, "罗卫飞", "123456", "22222222222"));
 //        usersMapper.delete(4);
    //测试注解curd
-        ProductionMapper productionMapper=sqlSession.getMapper(ProductionMapper.class);
-        productionMapper.queryAll().forEach(System.out::println);
-        System.out.println(productionMapper.queryByid(2));
-        System.out.println(productionMapper.queryByname("神船"));
-        Production production = new Production(4, "键盘", 123, "上海", (float) 250);
-        productionMapper.insert(production);
-        System.out.println(productionMapper.queryByid(4));
-        System.out.println(productionMapper.delete(4));
-        production.setId(2);
-        production.setName("键盘侠神器");
-        productionMapper.updateAllByid(production);
-        System.out.println(productionMapper.queryBynameToShow("键盘侠神器"));
+        //ProductionMapper productionMapper=sqlSession.getMapper(ProductionMapper.class);
+//        productionMapper.queryAll().forEach(System.out::println);
+//        System.out.println(productionMapper.queryByid(2));
+//        System.out.println(productionMapper.queryByname("神船"));
+//        Production production = new Production(4, "键盘", 123, "上海", (float) 250);
+//        productionMapper.insert(production);
+//        System.out.println(productionMapper.queryByid(4));
+//        System.out.println(productionMapper.delete(4));
+//        production.setId(2);
+//        production.setName("键盘侠神器");
+//        productionMapper.updateAllByid(production);
+//        System.out.println(productionMapper.queryBynameToShow("键盘侠神器"));
+
+        //EmpMapper
+        EmpMapper empMapper=sqlSession.getMapper(EmpMapper.class);
+        System.out.println(empMapper.queryByDept(30).size());
+
+        //Dept
+        DeptMapper deptMapper=sqlSession.getMapper(DeptMapper.class);
+        System.out.println(deptMapper.queryById(30));
         sqlSession.commit();
         sqlSession.close();
         }

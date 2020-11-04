@@ -1,4 +1,4 @@
-# oracle
+﻿# oracle
 
 ## 简述
 
@@ -648,12 +648,6 @@ ROWNUM，我们可以生产一些原先难以实现的结果输
 >
 > ```
 > create or replace view 视图名 as select语句 [with read only];
-> 
-> grant  dba to scott;  
-> create view manager as(select * from emp where empno in(select distinct mgr from emp));
-> select * from manager;
-> update manager set comm=9999 where empno=1111;
-> select max(sal),deptno from manager group by deptno;
 > ```
 >
 > 
@@ -686,7 +680,7 @@ ROWNUM，我们可以生产一些原先难以实现的结果输
 > select * from emp order by sal,ename;
 > ```
 >
-
+> 
 ## DDL
 
 ### 创建表
@@ -804,6 +798,10 @@ ALTER TABLE tb_user enable constraint nn_user_name;
 ```sql
 INSERT INTO mytable(col1, col2)
 VALUES(val1, val2);
+
+INSERT INTO mytable(col1, col2)
+select col1,col2 from mytable;;
+
 ```
 
 插入检索出来的数据
@@ -827,6 +825,7 @@ SELECT * FROM mytable;
 UPDATE mytable
 SET col = val
 WHERE id = 1;
+
 ```
 
 ### 删除
@@ -901,7 +900,6 @@ TRUNCATE TABLE mytable;
 
 
 ***补充: oracle默认不自动提交，而mysql默认自动提交，mysql 开启事务要设置不自动提交：begin 开始事务，commit提交完成事务，rollback回滚***
-
 ## java连接
 
 ```
@@ -956,7 +954,171 @@ while(rs.next()) {
 }
 ```
 
-### 反射操作oracle增删改查
+### 通用curd
+
+```
+class ConnectionFactory {
+    public static Connection getOracleConnection(String source) throws SQLException, IOException, ClassNotFoundException {
+        Properties pro=new Properties();
+        pro.load(ConnectionFactory.class.getClassLoader().getResourceAsStream(source));
+        String driver=pro.getProperty("driver");
+        String url=pro.getProperty("url");
+        String user=pro.getProperty("user");
+        String pwd=pro.getProperty("password");
+        Class.forName(driver);
+        Connection connection = DriverManager.getConnection(url, user, pwd);
+        return connection;
+    }
+    public static void close(Connection connection) throws SQLException {
+        if(connection!=null)
+            connection.close();
+    }
+}
+```
+
+```
+public class JDBCUtils {
+    private static Properties properties=new Properties();
+    private static boolean commit=true;
+    static {
+        try {
+            properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("application.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * @param sql  查询语句
+     * @param rowName  显示列名
+     * @throws SQLException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public static void query(String sql,String[] rowName) throws SQLException, IOException, ClassNotFoundException {
+        Connection oracleConnection = ConnectionFactory.getOracleConnection(properties.getProperty("dataSources"));
+
+        Statement statement=oracleConnection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        while (resultSet.next()){
+            for(String s:rowName)
+              System.out.print(resultSet.getObject(s)+"    ");
+            System.out.println("");
+        }
+        close(oracleConnection, statement, resultSet);
+    }
+
+    /**
+     * 预处理查询
+     * @param sql  查询语句
+     * @param param  传入sql参数
+     * @param classes  参数类型
+     * @param rowName   显示列名
+     * @throws SQLException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public static void query(String sql,String[] param,Class[] classes,String[] rowName) throws SQLException, IOException, ClassNotFoundException {
+        Connection oracleConnection = ConnectionFactory.getOracleConnection(properties.getProperty("dataSources"));
+
+        PreparedStatement statement=oracleConnection.prepareStatement(sql);
+        for(int i=0;i<param.length;i++){
+            if(classes[i]==int.class){
+                statement.setInt(i+1, Integer.valueOf(param[i]));
+            }
+            else if(classes[i]==String.class){
+                statement.setString(i+1, param[i]);
+            }
+            else if(classes[i]==boolean.class){
+                statement.setBoolean(i+1, Boolean.parseBoolean(param[i]));
+            }
+            else {
+                System.out.println("类型错误，支持int，string，boolen");
+            }
+        }
+        ResultSet rs=statement.executeQuery();
+        while (rs.next()){
+            for(String s:rowName)
+                System.out.print(rs.getObject(s)+"    ");
+            System.out.println("");
+        }
+        close(oracleConnection, statement, rs);
+    }
+    public static boolean update(String sql,String[] param,Class[] classes) throws SQLException, IOException, ClassNotFoundException {
+        Connection oracleConnection = ConnectionFactory.getOracleConnection(properties.getProperty("dataSources"));
+        //开启事务
+        oracleConnection.setAutoCommit(commit);
+        PreparedStatement statement=oracleConnection.prepareStatement(sql);
+        for(int i=0;i<param.length;i++){
+            if(classes[i]==int.class){
+                statement.setInt(i+1, Integer.valueOf(param[i]));
+            }
+            else if(classes[i]==String.class){
+                statement.setString(i+1, param[i]);
+            }
+            else if(classes[i]==boolean.class){
+                statement.setBoolean(i+1, Boolean.parseBoolean(param[i]));
+            }
+            else {
+                System.out.println("类型错误，支持int，string，boolen");
+                return false;
+            }
+        }
+        int rows=statement.executeUpdate();
+        if(!commit){
+            if(rows>0){
+                oracleConnection.commit();
+                System.out.println("事务完成，状态：成功；修改"+rows+"行");
+            }else {
+                oracleConnection.rollback();
+                System.out.println("事务完成，状态：失败；修改"+rows+"行");
+            }
+        }
+        close(oracleConnection, statement, null);
+        return rows>0?true:false;
+    }
+
+    /**
+     * 关闭
+     * @param connection
+     * @param statement
+     * @param resultSet
+     * @throws SQLException
+     */
+    public static void close(Connection connection,Statement statement,ResultSet resultSet) throws SQLException {
+        if(resultSet!=null)
+            resultSet.close();
+        if(statement!=null)
+            statement.close();
+        ConnectionFactory.close(connection);
+    }
+
+    public static void startShiWu(boolean flag){
+        commit=false;
+    }
+}
+
+```
+测试代码:
+
+```
+public class Demo2 {
+    public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException {
+        //语句，查询列名
+        JDBCUtils.query("select * from student",new String[]{"sno","sname","ssex","sage","sdept"});
+        //语句，传入sql参数，参数类型，显示列名
+        JDBCUtils.query("select * from student where sno=?",new String[]{"9521105"},  new Class[]{String.class}, new String[]{"sno","sname","ssex","sage","sdept"});
+        //查询grade表
+        JDBCUtils.query("select * from grade",new String[]{},new Class[]{},new String[]{"low","upp","rank"});
+        //修改
+        JDBCUtils.startShiWu(false);//开启事务
+        JDBCUtils.update("update student set sname=? where sno=?",new String[]{"罗卫飞","9521105"},new Class[]{String.class,String.class});
+    }
+}
+```
+
+### 反射操作oracle增删改查（只要class对象模仿jdbctemplate）
 
 ```
 package com.lwf.classTest.ReflectJDBC;
@@ -1141,3 +1303,4 @@ public class Test {
 }
 
 ```
+

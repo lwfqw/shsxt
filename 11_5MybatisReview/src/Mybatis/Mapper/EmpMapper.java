@@ -20,4 +20,9 @@ public interface EmpMapper {
     List<Emp> queryList(List<Integer> list);
     Map<String,Object> queryByidToMap(Integer no);
     List<Map<String,Object>> queryBydeptToMap(Integer deptno);
+    List<Emp> queryByMgrDept(Integer mgr,Integer deptno);
+    List<Emp> queryByMgrDeptComm(Integer mgr,Integer deptno,Float comm);
+
+    int deleteSomeEmpno(List<Integer> dnos);
+    int insertSome(List<Emp> list);
 }

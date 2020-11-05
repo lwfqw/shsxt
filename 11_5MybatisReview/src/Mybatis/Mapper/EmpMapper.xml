@@ -3,24 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Mybatis.Mapper.EmpMapper">
+<!--    输出pojo类-->
    <select id="queryByDept" parameterType="Integer"  resultType="Emp" >
        select * from EMP where DEPTNO=#{deptno}
    </select>
     <select id="query" resultType="Emp">
         select * from EMP
     </select>
+<!--    参数为数组 collection="array"-->
     <select id="queryArray" resultType="Emp">
         select * from emp where empno in
         <foreach collection="array" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>
     </select>
+<!--    参数为list collection="list"-->
     <select id="queryList" resultType="Emp">
         select * from emp where empno in
         <foreach collection="list" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>
     </select>
+<!--    查询结果输出为map-->
     <select id="queryByidToMap" parameterType="integer" resultType="map">
         select * from emp where empno=#{no}
     </select>

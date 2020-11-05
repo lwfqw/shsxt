@@ -23,7 +23,7 @@ public class UsersTest {
         sqlSession=new SessionFactory().getSession();
     }
  @Test
-    public void select(){
+    public void selectUser(){
      UsersMapper mapper=sqlSession.getMapper(UsersMapper.class);
      mapper.all().forEach(System.out::println);
      mapper.update(new Users(2, null, "1234"));

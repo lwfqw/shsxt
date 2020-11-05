@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mybatis.Mapper.BuyMapper">
+    <resultMap id="detail" type="Buy">
+        <id column="id" property="id"/>
+        <association property="product" column="pid" select="Mybatis.Mapper.ProductMapper.getById"/>
+        <association property="users" column="id" select="Mybatis.Mapper.UsersMapper.getById"/>
+    </resultMap>
+    <insert id="insert">
+        insert into BUY values (#{id},#{pid},#{buy})
+    </insert>
+    <update id="update">
+        update BUY
+        <set>
+            <if test="pid!=null">pid=#{pid},</if>
+            <if test="buy!=null">buy=#{buy}</if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="delete">
+        delete from BUY
+        <where>
+            <if test="id!=null">id=#{id} </if>
+            <if test="pid!=null">and pid=#{pid}</if>
+            <if test="buy!=null">and id=#{buy}</if>
+        </where>
+    </delete>
+    <select id="all" resultType="Mybatis.Emtity.Buy">
+        select * from BUY
+    </select>
+    <select id="allDetial" resultMap="detail">
+        select * from BUY
+    </select>
+    <select id="userByUid" resultMap="detail">
+        select * from BUY where ID=#{id}
+    </select>
+</mapper>

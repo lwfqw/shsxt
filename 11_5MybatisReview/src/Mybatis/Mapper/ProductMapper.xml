@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mybatis.Mapper.ProductMapper">
+    <insert id="insert">
+        insert into PRODUCT values(#{pid},#{name},#{have},#{info})
+    </insert>
+    <update id="update" parameterType="Product">
+        update PRODUCT
+        <set>
+            <if test="name!=null">name =#{name},</if>
+            <if test="have!=null">have =#{have},</if>
+            <if test="info!=null">info =#{info}</if>
+        </set>
+        where pid=#{pid}
+    </update>
+    <delete id="delete">
+        delete from PRODUCT where PID=#{pid}
+    </delete>
+    <select id="all" resultType="Mybatis.Emtity.Product">
+        select * from PRODUCT
+    </select>
+    <select id="getById" resultType="Mybatis.Emtity.Product">
+        select * from PRODUCT where PID=#{id}
+    </select>
+    <select id="getByName" resultType="Mybatis.Emtity.Product">
+        select * from PRODUCT where NAME=#{name}
+    </select>
+</mapper>

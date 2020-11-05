@@ -11,7 +11,7 @@ import java.util.List;
  * @description: TODO
  * @date 2020/11/515:01
  */
-public interface Mybatis<T> {
+public interface Mybatis {
     SqlSession getSession();
     SqlSession getSession(boolean open);
     void rollBack();

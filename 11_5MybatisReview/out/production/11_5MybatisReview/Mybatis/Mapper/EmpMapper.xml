@@ -57,4 +57,11 @@
             from dual </foreach>
 
     </insert>
+    <update id="updateSome" parameterType="list">
+        begin
+        <foreach collection="list" item="i" separator=";">
+            update emp set ENAME=#{i.ename} where empno=#{i.empno}
+        </foreach>
+        ;end;
+    </update>
 </mapper>

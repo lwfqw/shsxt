@@ -25,4 +25,5 @@ public interface EmpMapper {
 
     int deleteSomeEmpno(List<Integer> dnos);
     int insertSome(List<Emp> list);
+    int updateSome(List<Emp> list);
 }

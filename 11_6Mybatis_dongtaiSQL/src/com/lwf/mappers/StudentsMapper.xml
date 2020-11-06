@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lwf.mappers.StudentsMapper">
+    <select id="query" resultType="com.lwf.Entity.Students">
+        select * from students
+    </select>
+    <resultMap id="detail" type="Students">
+        <id column="id" property="id"/>
+        <result property="cno" column="cno"/>
+        <association property="cname" javaType="Cname"  >
+            <id column="cnoi" property="cno"/>
+            <result property="name" column="cname"/>
+        </association>
+    </resultMap>
+    <select id="queryDetail" resultMap="detail">
+        select id,students.name,sex,cname.name cname ,cname.cno cnoi from students  join cname on students.cno=cname.cno
+    </select>
+</mapper>

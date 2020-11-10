@@ -15,9 +15,9 @@
     <update id="updateByid" parameterType="Users">
         update users
         <set>
-            <if test="#{name}!=null">name=#{name},</if>
-            <if test="#{password}!=null">password=#{password},</if>
-            <if test="#{tel}!=null">tel=#{tel}</if>
+            <if test="name!=null">name=#{name},</if>
+            <if test="password!=null">password=#{password},</if>
+            <if test="tel!=null">tel=#{tel}</if>
         </set>
         where id =#{id}
     </update>
@@ -27,7 +27,7 @@
     <delete id="delete" parameterType="Integer">
         delete from users
         <where>
-            <if test="#{id}!=null">id=#{id}</if>
+            <if test="id!=null">id=#{id}</if>
         </where>
     </delete>
 </mapper>

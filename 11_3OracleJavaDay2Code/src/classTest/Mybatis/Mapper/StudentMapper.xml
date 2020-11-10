@@ -17,9 +17,9 @@
     <update id="update" parameterType="Student">
         update student
         <set>
-            <if test="#{sname}!= null">sname=#{sname},</if>
-            <if test="#{sage}!= null">sage=#{sage},</if>
-            <if test="#{sdept} != null">sdept=#{sdept},</if>
+            <if test="sname!= null">sname=#{sname},</if>
+            <if test="sage!= null">sage=#{sage},</if>
+            <if test="sdept != null">sdept=#{sdept},</if>
         </set>
         where sno=#{sno}
     </update>
@@ -28,9 +28,9 @@
     </insert>
     <delete id="delete" parameterType="Student" >
         delete  from student where 1=1
-        <if test="#{sno}!=null">and sno=#{sno}</if>
-        <if test="#{sname}!=null">and sname=#{sname}</if>
-        <if test="#{sage}!=null">and sage=#{sage}</if>
-        <if test="#{sdept}!=null">and sdept=#{sdept}</if>
+        <if test="sno!=null">and sno=#{sno}</if>
+        <if test="sname!=null">and sname=#{sname}</if>
+        <if test="sage!=null">and sage=#{sage}</if>
+        <if test="sdept!=null">and sdept=#{sdept}</if>
     </delete>
 </mapper>

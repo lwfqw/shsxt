@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lwf.mappers.OutputMapper">
+
+    <insert id="insertSome" parameterType="list">
+        insert into output
+        <foreach collection="list" item="e" separator="union all" >
+            select #{e.num} num,#{e.year} year,#{e.q1} q1,#{e.q2} q2,#{e.q3} q3,#{e.q4} q4,#{e.total} total from dual
+        </foreach>
+    </insert>
+    <select id="pridict" resultType="java.lang.Integer">
+        select avg(total) from (select * from output order by year desc) where rownum in (1,2,3,4)
+    </select>
+    <select id="all" resultType="com.lwf.Entity.Output">
+        select * from output
+    </select>
+    <select id="queryByYear" resultType="com.lwf.Entity.Output">
+        select * from output where year =#{year}
+    </select>
+</mapper>

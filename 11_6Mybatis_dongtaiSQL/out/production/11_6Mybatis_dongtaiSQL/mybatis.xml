@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--数据库配置文件位置，采用classPath：这里放到资源文件中-->
+    <properties resource="oracle.properties" />
+    <!-- settings标签 -->
+    <settings> <!-- 设置MyBatis使用log4j日志支持 -->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    <!--包别名，在此包下可省略全包路径-->
+    <typeAliases>
+        <package name="com.lwf.Entity"/>
+    </typeAliases>
+    <!--数据库环境，default填要使用的数据库环境id-->
+    <environments default="development">
+        <!--数据库环境，由id唯一确定，可写多个-->
+        <environment id="development">
+            <!--采用JDBC事务-->
+            <transactionManager type="JDBC"/>
+            <!--使用jdbc自带连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${user}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+        <environment id="mysql">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${user}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--mapper位置，存放sql-->
+    <mappers>
+<!--        自动扫描包下的mapper-->
+        <package name="com.lwf.mappers"/>
+    </mappers>
+</configuration>

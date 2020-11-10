@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lwf.mappers.EmpMapper">
+<!--    输出pojo类-->
+   <select id="queryByDept" parameterType="Integer"  resultType="Emp" >
+       select * from EMP where DEPTNO=#{deptno}
+   </select>
+    <select id="query" resultType="Emp">
+        select * from EMP
+    </select>
+<!--    参数为数组 collection="array"-->
+    <select id="queryArray" resultType="Emp">
+        select * from emp where empno in
+        <foreach collection="array" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+<!--    参数为list collection="list"-->
+    <select id="queryList" resultType="Emp">
+        select * from emp where empno in
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+<!--    查询结果输出为map-->
+    <select id="queryByidToMap" parameterType="integer" resultType="map">
+        select * from emp where empno=#{no}
+    </select>
+    <select id="queryBydeptToMap" resultType="map">
+        select * from emp where deptno=#{deptno}
+    </select>
+<!--    参数绑定-->
+<!--    一个参数一般参数名相同（或不同)-->
+<!--    pojo类属性名相同自动绑定-->
+<!--    二参数-->
+    <select id="queryByMgrDept" resultType="emp">
+        select * from emp where mgr=#{arg0} and deptno=#{arg1}
+    </select>
+<!--    三参数-->
+    <select id="queryByMgrDeptComm" resultType="emp">
+        select * from emp where mgr=#{arg0} and deptno=#{arg1} and comm>=#{arg2}
+    </select>
+<!--    批量删除-->
+    <delete id="deleteSomeEmpno" >
+        delete from emp where empno in
+        <foreach collection="list" open="(" item="item" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+<!--    批量插入-->
+    <insert id="insertSome"  parameterType="list" >
+        insert into emp
+        <foreach collection="list"  item="item" index="index"   separator="UNION ALL">
+            select     #{item.empno} empno,#{item.ename} ename,#{item.job} job,#{item.mgr} mgr,#{item.hiredate} hiredate,#{item.sal} sal,#{item.comm} comm,#{item.deptno} deptno
+            from dual </foreach>
+
+    </insert>
+    <update id="updateSome" parameterType="list">
+        begin
+        <foreach collection="list" item="i" separator=";">
+            update emp set ENAME=#{i.ename} where empno=#{i.empno}
+        </foreach>
+        ;end;
+    </update>
+    <update id="update">
+        update emp
+        <set>
+        <if test="ename!=null">
+            ename =#{ename},
+        </if>
+        <if test="job!=null">job=#{job},</if>
+        <if test="mgr!=null">mgr=#{mgr},</if>
+        <if test="hiredate!=null">hiredate=#{hiredate},</if>
+        <if test="sal!=null">sal=#{sal},</if>
+        <if test="comm!=null">comm=#{comm},</if>
+        <if test="deptno!=null">deptno=#{deptno},</if>
+    </set>
+    where empno=#{empno}
+    </update>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!--本context连接的内容-->
+    <context id="Oracle" >
+        <!--数据库连接信息-->
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+                        connectionURL="jdbc:oracle:thin:@localhost:1521:XE"
+                        userId="SCOTT"
+                        password="TIGER">
+        </jdbcConnection>
+        <!--JavaBean生成的位置-->
+        <javaModelGenerator targetPackage="com.lwf.pojo" targetProject="C:\Users\lwf\IdeaProjects\11_7MybatisGenerator\src">
+        </javaModelGenerator>
+
+        <!--xml配置文件生成的位置-->
+        <sqlMapGenerator targetPackage="com.lwf.mapper"  targetProject="C:\Users\lwf\IdeaProjects\11_7MybatisGenerator\src">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!--Mapper接口生成的位置-->
+        <javaClientGenerator targetPackage="com.lwf.mapper" type="XMLMAPPER" targetProject="C:\Users\lwf\IdeaProjects\11_7MybatisGenerator\src">
+        </javaClientGenerator>
+
+
+        <!--逆向工程的表-->
+        <table tableName="STUDENTS" > </table>
+        <table tableName="EMP" > </table>
+        <table tableName="CNAME" > </table>
+
+    </context>
+</generatorConfiguration>

@@ -15,8 +15,14 @@ spring:
     view:
       prefix: /
       suffix: .html
-
+  mail:
+    host: smtp.sina.com
+    port: 465
+    username: lwflearn@sina.com
+    password: ecb96989c3b566a8
+    protocol: smtps
 server:
   port: 9095
   servlet:
     context-path: /
+

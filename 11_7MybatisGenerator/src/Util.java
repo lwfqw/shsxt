@@ -15,7 +15,6 @@ public class Util implements Comparator {
     public static void main(String[] args) throws Exception {
         Integer a=126;
         System.out.println(a.equals(126));
-        Consumer
 //        List<String> warnings = new ArrayList<>();
 //        boolean overwrite = true;
 //        try {

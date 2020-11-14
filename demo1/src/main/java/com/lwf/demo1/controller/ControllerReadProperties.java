@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
+import java.net.http.HttpResponse;
 import java.util.List;
 
 /**
@@ -35,7 +37,8 @@ public class ControllerReadProperties {
     //返回json数组
     @RequestMapping("/allPanda")
     @ResponseBody
-    public List<Panda> allPanda() throws UnsupportedEncodingException {
+    public List<Panda> allPanda(HttpServletResponse response) throws UnsupportedEncodingException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         return pandaServer.allPanda();
     }
 

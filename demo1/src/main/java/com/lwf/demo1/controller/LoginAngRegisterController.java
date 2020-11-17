@@ -60,10 +60,10 @@ public class LoginAngRegisterController {
         session.setAttribute("mailCode", s);
         loger.info("邮箱验证码:"+s);
         Context context=new Context();
-        context.setVariable("name", "罗某人");
+        context.setVariable("name", "熊某人");
         context.setVariable("code", s);
         String process = engine.process("mail/mail.html", context);
-        mail.setSender("519155720@qq.com", "验证码", process);
+        mail.setSender("632593482@qq.com", "验证码", process);
     }
     //验证邮箱
     @RequestMapping("/checkEmail")

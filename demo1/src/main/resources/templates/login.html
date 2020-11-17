@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet"  type="text/css" href="static/layui/css/layui.css"/>
+    <script src="static/layui/layui.js"  type="text/javascript"></script>
+</head>
+<body>
+<div class="layui-container" style="background-image: url('static/image/hello.jpg');">
+    <div class="layui-row">
+        <div class="layui-col-md6" id="passwordTo"><button class="layui-btn">密码登录</button></div>
+        <div class="layui-col-md6" id="codeTo"><button class="layui-btn">验证码登录</button></div>
+    </div>
+    <div id="passwordCheck" class="layui-row" style="margin-top: 10%;margin-left: 42%" id="form1" >
+            <script>
+                    document.getElementById("passwordTo").onclick=function () {
+                        document.getElementById("passwordCheck").innerHTML='<form class="layui-form" style="background-color: cyan;opacity: 0.3;width: 30%;align-content: center" action="">\n' +
+                            '                <div align="center" class="layui-col-md12">\n' +
+                            '                <div class="layui-form-item">\n' +
+                            '                    <label class="layui-form-label">邮箱</label>\n' +
+                            '                    <div class="layui-input-block">\n' +
+                            '                        <input type="email" name="title" required  lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">\n' +
+                            '                    </div>\n' +
+                            '                </div>\n' +
+                            '                </div>\n' +
+                            '                <div align="center" class="layui-col-md12">\n' +
+                            '                <div class="layui-form-item">\n' +
+                            '                    <label class="layui-form-label">密码</label>\n' +
+                            '                    <div class="layui-input-inline">\n' +
+                            '                        <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">\n' +
+                            '                    </div>\n' +
+                            '                </div>\n' +
+                            '                </div>\n' +
+                            '                <div align="center" class="layui-col-md12">\n' +
+                            '                <div class="layui-form-item">\n' +
+                            '                    <div class="layui-input-block">\n' +
+                            '                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>\n' +
+                            '                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>\n' +
+                            '                    </div>\n' +
+                            '                </div>\n' +
+                            '                </div>\n' +
+                            '            </form>';
+                        // document.getElementById("passwordcheck").style.visibility="visible";
+                        // document.getElementById("codecheck").style.visibility="hidden";
+                    };
+                    document.getElementById("codeTo").onclick=function () {
+                        // document.getElementById("codecheck").style.visibility="visible";
+                        // document.getElementById("passwordcheck").style.visibility="hidden";
+                        document.getElementById("passwordCheck").innerHTML='<form id="codecheck" class="layui-form" style="background-color: cyan;opacity: 0.3;width: 30%;align-content: center;visibility: hidden" action="">\n' +
+                            '            <div align="center" class="layui-col-md12">\n' +
+                            '                <div class="layui-form-item">\n' +
+                            '                    <label class="layui-form-label">邮箱</label>\n' +
+                            '                    <div class="layui-input-block">\n' +
+                            '                        <input type="email" name="title" required  lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">\n' +
+                            '                    </div>\n' +
+                            '                </div>\n' +
+                            '            </div>\n' +
+                            '            <div align="center" class="layui-col-md12">\n' +
+                            '                <div class="layui-form-item">\n' +
+                            '                    <label class="layui-form-label">验证码</label>\n' +
+                            '                    <div class="layui-input-inline">\n' +
+                            '                        <input type="password" name="password" required lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input">\n' +
+                            '                    </div>\n' +
+                            '                </div>\n' +
+                            '            </div>\n' +
+                            '            <div align="center" class="layui-col-md12">\n' +
+                            '                <div class="layui-form-item">\n' +
+                            '                    <div class="layui-input-block">\n' +
+                            '                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>\n' +
+                            '                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>\n' +
+                            '                    </div>\n' +
+                            '                </div>\n' +
+                            '            </div>\n' +
+                            '        </form>';
+                    };
+
+                //Demo
+                layui.use('form', function(){
+                    var form = layui.form;
+
+                    //监听提交
+                    form.on('submit(formDemo)', function(data){
+                        layer.msg(JSON.stringify(data.field));
+                        return false;
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</div>
+</body>
+</html>

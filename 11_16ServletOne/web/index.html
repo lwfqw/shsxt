@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title >熊猫</title>
+    <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
+</head>
+<body>
+<div style="text-align: center;" id="div1"></div>
+<div id="div2"></div>
+<button type="button" id="btn">按钮</button>
+<script type="text/javascript">
+    $("#btn").click(function(){
+        alert("as");
+        $.ajax({
+            url:'http://lwf:9999/One/json',
+            type:'get',
+            dataType:'json',
+            success:function (data) {
+                for (var i=0;i<data.length;i++){
+                    console.log(data);
+                    $("#div1").append("<tr><td>"+data[i].name+"</td><td>"+data[i].age+"</td></tr>");
+                }
+            }
+        });
+
+    });
+    // $(function(){
+    // 	$.getJSON("js/info.json",function(dat){
+    // 		console.log(dat);
+    // 		$("#div2").append(JSON.stringify(dat));
+    // 	});
+    // });
+
+</script>
+</body>
+</html>

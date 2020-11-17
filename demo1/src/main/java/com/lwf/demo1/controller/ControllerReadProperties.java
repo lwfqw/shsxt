@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.net.http.HttpResponse;
@@ -64,4 +66,26 @@ public class ControllerReadProperties {
         zoo1.setName("上海");
         return zoo1;
     }
+    //cookie
+    @RequestMapping("/cookie")
+    @ResponseBody
+    public void cookie(HttpServletResponse response){
+        Cookie cookie=new Cookie("name", "lwf");
+        cookie.setPath("/getCookie");
+        cookie.setMaxAge(3*60);
+        response.addCookie(cookie);
+        response.setContentType("application/json;charset=utf-8");
+    }
+    @RequestMapping("/getCookie")
+    @ResponseBody
+    public void getcookie(HttpServletRequest request){
+        if(request.getCookies().length==0){
+            System.out.println("null");
+        }else {
+            for(Cookie cookie:request.getCookies()){
+                System.out.println(cookie.getValue());
+            }
+        }
+    }
+
 }

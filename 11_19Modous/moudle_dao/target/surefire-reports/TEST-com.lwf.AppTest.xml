@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.lwf.AppTest" time="0.068" tests="1" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="sun.desktop" value="windows"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="GBK"/>
+    <property name="java.class.path" value="C:\Users\lwf\IdeaProjects\11_19Modous\moudle_dao\target\test-classes;C:\Users\lwf\IdeaProjects\11_19Modous\moudle_dao\target\classes;D:\Maven\LocalWarehouse\junit\junit\4.12\junit-4.12.jar;D:\Maven\LocalWarehouse\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;D:\Maven\LocalWarehouse\org\projectlombok\lombok\1.18.16\lombok-1.18.16.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://openjdk.java.net/"/>
+    <property name="user.timezone" value="Asia/Shanghai"/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="CN"/>
+    <property name="sun.boot.library.path" value="E:\jdk-11.0.8\bin"/>
+    <property name="sun.java.command" value="C:\Users\lwf\AppData\Local\Temp\surefire13459590625749309181\surefirebooter17068345119439807744.jar C:\Users\lwf\AppData\Local\Temp\surefire13459590625749309181 2020-11-19T16-01-28_303-jvmRun1 surefire8328368055527542382tmp surefire_015620727171847666560tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\lwf\IdeaProjects\11_19Modous\moudle_dao\target\test-classes;C:\Users\lwf\IdeaProjects\11_19Modous\moudle_dao\target\classes;D:\Maven\LocalWarehouse\junit\junit\4.12\junit-4.12.jar;D:\Maven\LocalWarehouse\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;D:\Maven\LocalWarehouse\org\projectlombok\lombok\1.18.16\lombok-1.18.16.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\lwf"/>
+    <property name="user.language" value="zh"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2020-07-14"/>
+    <property name="java.home" value="E:\jdk-11.0.8"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\lwf\IdeaProjects\11_19Modous\moudle_dao"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="idea.version2019.2.4" value="true"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="C:\Users\lwf\AppData\Local\Temp\surefire13459590625749309181\surefirebooter17068345119439807744.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="11.0.8+10-LTS"/>
+    <property name="user.name" value="lwf"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="GBK"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="18.9"/>
+    <property name="localRepository" value="D:\Maven\LocalWarehouse"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\lwf\AppData\Local\Temp\"/>
+    <property name="java.version" value="11.0.8"/>
+    <property name="user.dir" value="C:\Users\lwf\IdeaProjects\11_19Modous\moudle_dao"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="E:\jdk-11.0.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\oraclexe\app\oracle\product\11.2.0\server\bin;;E:\VMware Workstation\bin\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;E:\javaTool\bin;E:\javaTool\jre\bin;C:\Program Files\MySQL\MySQL Server 8.0\bin;E:\Git\cmd;E:\mango\bin;C:\Users\lwf\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\lwf\AppData\Local\Programs\Python\Python39\;C:\Users\lwf\AppData\Local\Microsoft\WindowsApps;E:\Bandizip\;C:\Users\lwf\AppData\Local\GitHubDesktop\bin;;."/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vm.version" value="11.0.8+10-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="maven.repo.local" value="D:\Maven\LocalWarehouse"/>
+    <property name="java.class.version" value="55.0"/>
+  </properties>
+  <testcase name="shouldAnswerWithTrue" classname="com.lwf.AppTest" time="0.002"/>
+</testsuite>

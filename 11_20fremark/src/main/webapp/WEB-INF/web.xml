@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.0"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+<servlet>
+    <servlet-name>freemarker</servlet-name>
+    <servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>
+    <init-param>
+      <!-- 模板路径 -->
+      <param-name>TemplatePath</param-name>
+      <!-- 默认在webapp目录下查找对应的模板文件 -->
+      <param-value>/</param-value>
+    </init-param>
+    <init-param>
+      <!-- 模板默认的编码：UTF-8 -->
+      <param-name>default_encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </servlet>
+  <!-- 处理所有以.ftl结尾的文件；ftl是freemarker默认的文件后缀 -->
+  <servlet-mapping>
+    <servlet-name>freemarker</servlet-name>
+    <url-pattern>*.ftl</url-pattern>
+  </servlet-mapping>
+  <display-name>Archetype Created Web Application</display-name>
+</web-app>

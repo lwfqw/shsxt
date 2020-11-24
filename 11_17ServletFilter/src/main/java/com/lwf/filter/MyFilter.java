@@ -19,14 +19,16 @@ public class MyFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        servletRequest.setCharacterEncoding("utf-8");
-        servletResponse.setCharacterEncoding("utf-8");
+//        servletRequest.setCharacterEncoding("utf-8");
+//        servletResponse.setCharacterEncoding("utf-8");
         System.out.println("拦截器设置");
-        if(servletRequest.getRemoteHost().equals("0:0:0:0:0:0:0:1")){
+        if(servletRequest.getRemoteHost().equals("0:0:0:0:0:0:0:1")||servletRequest.getRemoteHost().equals("127.0.0.1")){
             filterChain.doFilter(servletRequest, servletResponse);
         }
         else {
             System.out.println("拦截访问ip"+servletRequest.getRemoteHost());
+            servletResponse.setContentType("text/html;charset=utf-8");
+            servletResponse.getWriter().write("古文");
         }
     }
 }

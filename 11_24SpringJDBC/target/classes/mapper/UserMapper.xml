@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lwf.mappers.UserMapper">
+    <update id="out">
+        UPDATE user SET banlence = (banlence-#{param2}) WHERE (email = #{param1})
+    </update>
+    <update id="in">
+        UPDATE user SET banlence = (banlence+#{param2}) WHERE (email = #{param1})
+    </update>
+
+    <select id="all" resultType="User">
+        select * from user;
+    </select>
+    <select id="queryByEmail" resultType="com.lwf.pojo.User">
+        select * from user where email=#{email}
+    </select>
+</mapper>

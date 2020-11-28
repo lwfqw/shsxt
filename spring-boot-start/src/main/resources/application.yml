@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: admine
+    url: jdbc:mysql://localhost:3306/springboot?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+
+  aop:
+    auto: true
+  transaction:
+    rollback-on-commit-failure: true
+  mvc:
+    servlet:
+      path: /
+
+server:
+  port: 8080

@@ -1,4 +1,0 @@
-com\lwf\pojo\User.class
-com\lwf\controller\UserServlet.class
-com\lwf\controller\SellPageGet.class
-com\lwf\mappers\impl\UserMapperImpl.class

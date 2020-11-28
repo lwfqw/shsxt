@@ -21,11 +21,17 @@ http://www.springframework.org/schema/tx/spring-tx.xsd
     <mvc:default-servlet-handler/>
     <!-- 开启注解驱动-->
     <mvc:annotation-driven/>
+<!--    拦截器-->
     <mvc:interceptors>
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/*"/>-->
+<!--            <mvc:exclude-mapping path="/index.jsp"/>-->
+<!--            <bean class="com.lwf.interceper.RootHanderIntercepter"/>-->
+<!--        </mvc:interceptor>-->
         <mvc:interceptor>
             <mvc:mapping path="/*"/>
-            <mvc:exclude-mapping path="/index.jsp"/>
-            <bean class="com.lwf.interceper.RootHanderIntercepter"/>
+            <mvc:exclude-mapping path="/user/login"/>
+            <bean class="com.lwf.interceper.LoginIntercepter"/>
         </mvc:interceptor>
     </mvc:interceptors>
     <!-- 配置视图解析器 -->

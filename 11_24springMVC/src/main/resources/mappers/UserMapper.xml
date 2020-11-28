@@ -7,4 +7,7 @@
     <select id="queryAll" resultType="com.lwf.pojo.User">
         select * from user
     </select>
+    <select id="queryByEmail" resultType="com.lwf.pojo.User">
+        select * from user where email=#{email}
+    </select>
 </mapper>

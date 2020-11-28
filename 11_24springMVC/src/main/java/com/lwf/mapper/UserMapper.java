@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface UserMapper {
     List<User> queryAll();
+    User queryByEmail(String email);
 }

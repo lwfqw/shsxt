@@ -21,4 +21,10 @@ public class UserService {
     public List<User> queryAll(){
         return userMapper.queryAll();
     }
+    public boolean check(String email,String password){
+        return userMapper.queryByEmail(email).getPassword().equals(password);
+    }
+    public User getByEmail(String email){
+        return userMapper.queryByEmail(email);
+    }
 }
